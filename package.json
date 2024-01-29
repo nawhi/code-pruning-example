@@ -1,0 +1,10 @@
+{
+  "name": "@currencies/monorepo",
+  "version": "1.0.0",
+  "description": "Contrived monorepo example for explaining Code Pruning",
+  "author": "nawhi",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.2.4"
+  }
+}
