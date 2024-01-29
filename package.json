@@ -5,6 +5,7 @@
   "author": "nawhi",
   "license": "ISC",
   "devDependencies": {
+    "madge": "^6.1.0",
     "prettier": "^3.2.4"
   }
 }

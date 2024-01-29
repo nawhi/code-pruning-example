@@ -1,6 +1,24 @@
 import { describe, expect, it } from "vitest";
-import { convert } from "./currency-conversion";
+import { convert, floatToMoneyAmount } from "./currency-conversion";
 import { Money } from "../money/money";
+
+describe("numberToMoneyAmount", () => {
+  it("converts 0", () => {
+    expect(floatToMoneyAmount(0)).toEqual({ large: 0, small: 0 });
+  });
+
+  it("converts 0.01", () => {
+    expect(floatToMoneyAmount(0.01)).toEqual({ large: 0, small: 1 });
+  });
+
+  it("converts 0.1", () => {
+    expect(floatToMoneyAmount(0.1)).toEqual({ large: 0, small: 10 });
+  });
+
+  it("converts 1", () => {
+    expect(floatToMoneyAmount(1)).toEqual({ large: 1, small: 0 });
+  });
+});
 
 describe("currency conversion", () => {
   it("converts to itself with conversion rate of 1", () => {

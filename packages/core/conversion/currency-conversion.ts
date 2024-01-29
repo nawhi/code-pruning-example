@@ -1,15 +1,22 @@
-import type { CurrencySymbol, Money } from "../money/money.ts";
+import type { CurrencySymbol, Money, MoneyAmount } from "../money/money.ts";
+
+// NB: Never use floats for money in a real system
+export const moneyToFloat = (money: Money): number =>
+  money.large + Math.round(money.small / 100);
+
+// NB: Never use floats for money in a real system
+export const floatToMoneyAmount = (val: number): MoneyAmount => ({
+  large: Math.floor(val),
+  small: Math.round(val * 100) % 100,
+});
 
 export const convert = (
   amount: Money,
   rate: number,
   target: CurrencySymbol,
 ): Money => {
-  const val = amount.large * 100 + amount.small;
+  const val = moneyToFloat(amount);
   const converted = val * rate;
-  return {
-    symbol: target,
-    large: Math.floor(converted / 100),
-    small: Math.round(converted % 100),
-  };
+  const { large, small } = floatToMoneyAmount(converted);
+  return { large, small, symbol: target };
 };
